@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cn.poker.dao.WpStrateMapper">
+	
+	<select id="listForPage" resultType="com.cn.poker.entity.WpStrateEntity">
+		SELECT
+			t.`id`,
+			t.`pool_type`,
+			t.`type`,
+			t.`name`,
+			t.`price`,
+			t.`day_count`,
+			t.`sort`,
+			t.`create_time`,
+			t.`update_time`,
+			wp.`month`
+		FROM
+			wp_strate t left join wp_strategy_price wp on CONCAT_WS('-',t.type,'0') = wp.type
+		<where>
+                t.status = 1
+                <if test="poolType != null and poolType != ''">
+                    AND t.pool_type =#{poolType}
+                </if>
+                <if test="poolType != null and poolType != ''">
+                    AND t.type =#{type}
+                </if>
+            </where>
+		ORDER BY
+			t.id ASC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO wp_strate (
+			`pool_type`, 
+			`type`, 
+			`name`, 
+			`price`, 
+			`day_count`, 
+			`sort`, 
+			`create_time`, 
+			`update_time`
+		)
+		VALUES (
+			#{poolType}, 
+			#{type}, 
+			#{name}, 
+			#{price}, 
+			#{dayCount}, 
+			#{sort}, 
+			#{createTime}, 
+			#{updateTime}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="com.cn.poker.entity.WpStrateEntity">
+		SELECT
+			`id`, 
+			`pool_type`, 
+			`type`, 
+			`name`, 
+			`price`, 
+			`day_count`, 
+			`sort`, 
+			`create_time`, 
+			`update_time`
+		FROM
+			wp_strate
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE wp_strate
+	 	<set>
+			<if test="poolType != null">`pool_type` = #{poolType}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="price != null">`price` = #{price}, </if>
+			<if test="dayCount != null">`day_count` = #{dayCount}, </if>
+			<if test="sort != null">`sort` = #{sort}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			wp_strate
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+    <select id="getWpStrateInfo" parameterType="com.cn.poker.entity.StrateInfoVo" resultType="com.cn.poker.entity.StrateInfoVo">
+        select t.*  from wp_strategy_price t
+        where t.type=(SELECT  CONCAT_WS('-',t.type,0)
+        from wp_strate t where t.id = #{id})
+    </select>
+
+	<select id="getWpStrateInfo1" parameterType="com.cn.poker.entity.StrateInfoVo" resultType="com.cn.poker.entity.StrateInfoVo">
+		select t.*  from wp_strategy_price t
+		where t.type=(SELECT  CONCAT_WS('-',#{type},#{poolType}))
+	</select>
+
+    <select id="selectGoldByUserId" parameterType="java.lang.Integer" resultType="com.cn.poker.entity.WpIceInfo">
+		SELECT t.ice_id as iceId,t.ice_have_money as iceHaveMoney,t.ice_user_id as iceUserId,t.ice_get_money as iceGetMoney,t.userType,endTime,wp.user_nicename as nickName
+		from wp_ice_info t left join wp_users wp on t.ice_user_id = wp.id
+		where  ice_user_id = #{userId}
+    </select>
+
+    <select id="packaging" parameterType="java.lang.Integer" resultType="com.cn.poker.entity.PackInfo">
+        select t.* from wp_strategy_price t where t.type in ('2-4','3-4')
+    </select>
+
+	<update id="subtract" parameterType="com.cn.poker.entity.WpIceInfo">
+		UPDATE wp_ice_info set ice_get_money = ice_get_money + #{iceGetMoney} where ice_user_id = #{iceUserId}
+	</update>
+
+
+   <select id="packagType"   resultType="com.cn.poker.entity.WpStragePrice">
+       SELECT  id ,month,year,forver,type from wp_strategy_price where type not in ('2-0','3-0') order by id
+   </select>
+</mapper>

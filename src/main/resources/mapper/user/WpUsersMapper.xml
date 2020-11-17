@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cn.poker.dao.WpUsersMapper">
+	
+	<select id="listForPage" resultType="com.cn.poker.entity.WpUsersEntity">
+		SELECT
+			`ID`,
+			`user_login`,
+			`user_pass`,
+			`user_nicename`, 
+			`user_email`, 
+			`user_url`, 
+			`user_registered`, 
+			`user_activation_key`, 
+			`user_status`, 
+			`display_name`, 
+			`father_id`, 
+			`reg_ip`
+		FROM
+			wp_users
+		ORDER BY
+			ID DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO wp_users (
+			`user_login`, 
+			`user_pass`, 
+			`user_nicename`, 
+			`user_email`, 
+			`user_url`, 
+			`user_registered`, 
+			`user_activation_key`, 
+			`user_status`, 
+			`display_name`, 
+			`father_id`, 
+			`reg_ip`
+		)
+		VALUES (
+			#{userLogin}, 
+			#{userPass}, 
+			#{userNicename}, 
+			#{userEmail}, 
+			#{userUrl}, 
+			#{userRegistered}, 
+			#{userActivationKey}, 
+			#{userStatus}, 
+			#{displayName}, 
+			#{fatherId}, 
+			#{regIp}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="com.cn.poker.entity.WpUsersEntity">
+		SELECT
+			`ID`, 
+			`user_login`, 
+			`user_pass`, 
+			`user_nicename`, 
+			`user_email`, 
+			`user_url`, 
+			`user_registered`, 
+			`user_activation_key`, 
+			`user_status`, 
+			`display_name`, 
+			`father_id`, 
+			`reg_ip`
+		FROM
+			wp_users
+		WHERE
+			ID = #{id}
+	</select>
+
+
+	<select id="getUserByName" resultType="com.cn.poker.entity.WpUsersEntity">
+		SELECT
+		`ID`,
+		`user_login`,
+		`user_pass`,
+		`user_nicename`,
+		`user_email`,
+		`user_url`,
+		`user_registered`,
+		`user_activation_key`,
+		`user_status`,
+		`display_name`,
+		`father_id`,
+		`reg_ip`
+		FROM
+		wp_users
+		WHERE
+		user_login = #{userName} or user_email = #{userName}
+	</select>
+	
+	<update id="update">
+		UPDATE wp_users
+	 	<set>
+			<if test="userLogin != null">`user_login` = #{userLogin}, </if>
+			<if test="userPass != null">`user_pass` = #{userPass}, </if>
+			<if test="userNicename != null">`user_nicename` = #{userNicename}, </if>
+			<if test="userEmail != null">`user_email` = #{userEmail}, </if>
+			<if test="userUrl != null">`user_url` = #{userUrl}, </if>
+			<if test="userRegistered != null">`user_registered` = #{userRegistered}, </if>
+			<if test="userActivationKey != null">`user_activation_key` = #{userActivationKey}, </if>
+			<if test="userStatus != null">`user_status` = #{userStatus}, </if>
+			<if test="displayName != null">`display_name` = #{displayName}, </if>
+			<if test="fatherId != null">`father_id` = #{fatherId}, </if>
+			<if test="regIp != null">`reg_ip` = #{regIp}</if>
+		</set>
+		WHERE
+			ID = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			wp_users
+		WHERE
+			ID IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

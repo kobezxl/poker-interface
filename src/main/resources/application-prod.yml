@@ -1,0 +1,91 @@
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        druid:
+            masterDataSource:  #主库数据源
+              url: jdbc:mysql://localhost:3306/www_pokeradviser?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+#              url: jdbc:mysql://localhost:3306/poker_dictionary?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+
+#              阿里云
+              username: www_pokeradviser
+              password: AsGW8PpXSeZZtL6m
+#             godaddy
+#              username: root
+#              password: 8e65e80fdaf25569
+            slaveDataSource:  #从库数据源
+              url: jdbc:mysql://localhost:3306/www_pokeradviser?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+#            url: jdbc:mysql://localhost:3306/poker_dictionary?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+
+
+
+#              阿里云
+              username: www_pokeradviser
+              password: AsGW8PpXSeZZtL6m
+#             godaddy
+#              username: root
+#              password: 8e65e80fdaf25569
+            initial-size: 10
+            max-active: 100
+            min-idle: 10
+            max-wait: 60000
+            pool-prepared-statements: true
+            max-pool-prepared-statement-per-connection-size: 20
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            validation-query: SELECT 1 FROM DUAL
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            stat-view-servlet:
+                enabled: true
+                url-pattern: /druid/*
+                #login-username: admin
+                #login-password: admin
+            filter:
+                stat:
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                    merge-sql: true
+                wall:
+                    config:
+                        multi-statement-allow: true
+                        
+cashFlow: 
+  address: M888SbPxmPg8txTecLdhSx6HLTSTUW74A8M
+  findAmount: http://192.168.1.19:16833/api/accounts/getBalance
+  
+#upload: 
+#  uploadPath: 
+#    mallCategoryItemPath: /home/photo/categoryImage
+#  uploadUrl:
+#    mallCategoryItemUrl: https://apollotest.mcsports.cn:4343/categoryImage/
+
+#图片上传配置
+upload: 
+  uploadMap: 
+    mallCategoryItemPath: /apollo/image/categoryImage 
+    mallCategoryItemUrl: /categoryImage/
+    cmsArticlePath: /apollo/image/articleImage
+    cmsArticleUrl: /articleImage/
+    mallCategoryPath: /apollo/image/goodsImage
+    mallCategoryUrl: /goodsImage/
+  prictureIP: http://image.mcsports.cn:89
+  pricturePersonIP: http://image.mcsports.cn:89/customerFile/
+  
+# sftp上传配置(预生产)
+sftp:
+  config:
+    server: 192.168.12.70
+    port: 22
+    user: root
+    password: EzhTChxmx6QJdA&^
+
+#登陆链接http://208.109.11.123:80    阿里云官网：http://www.pokeradviser.cn/wp-login.php  ，  http://www.poker-dictionary.net/wp-login.php
+poker:
+#  url: http://www.poker-dictionary.net/wp-login.php
+  url: http://www.pokeradviser.cn/wp-login.php
+#开始时间
+  start: 2020-09-30 00:00:00
+#奖励时间
+  daycount: 7

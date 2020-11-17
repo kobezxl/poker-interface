@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cn.poker.dao.WpStrategyDetailMapper">
+	
+	<select id="listForPage" resultType="com.cn.poker.entity.WpStrategyDetailEntity">
+		SELECT
+			`id`, 
+			`user_id`, 
+			`start_date`, 
+			`end_date`, 
+			`pool_type`, 
+			`type`, 
+			`gold`, 
+			`type_num`, 
+			`create_date`, 
+			`strategy_id`, 
+			`day_count`
+		FROM
+			wp_strategy_detail
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO wp_strategy_detail (
+			`user_id`, 
+			`start_date`, 
+			`end_date`, 
+			`pool_type`, 
+			`type`, 
+			`gold`, 
+			`type_num`, 
+			`create_date`, 
+			`strategy_id`, 
+			`day_count`
+		)
+		VALUES (
+			#{userId}, 
+			#{startDate}, 
+			#{endDate}, 
+			#{poolType}, 
+			#{type}, 
+			#{gold}, 
+			#{typeNum}, 
+			#{createDate}, 
+			#{strategyId}, 
+			#{dayCount}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="com.cn.poker.entity.WpStrategyDetailEntity">
+		SELECT
+			`id`, 
+			`user_id`, 
+			`start_date`, 
+			`end_date`, 
+			`pool_type`, 
+			`type`, 
+			`gold`, 
+			`type_num`, 
+			`create_date`, 
+			`strategy_id`, 
+			`day_count`
+		FROM
+			wp_strategy_detail
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE wp_strategy_detail
+	 	<set>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="startDate != null">`start_date` = #{startDate}, </if>
+			<if test="endDate != null">`end_date` = #{endDate}, </if>
+			<if test="poolType != null">`pool_type` = #{poolType}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="gold != null">`gold` = #{gold}, </if>
+			<if test="typeNum != null">`type_num` = #{typeNum}, </if>
+			<if test="createDate != null">`create_date` = #{createDate}, </if>
+			<if test="strategyId != null">`strategy_id` = #{strategyId}, </if>
+			<if test="dayCount != null">`day_count` = #{dayCount}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			wp_strategy_detail
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+
+
+	<select id="listRecordForPage" parameterType="com.cn.poker.entity.WpRecordVo" resultType="com.cn.poker.entity.WpRecordVo">
+		SELECT
+		t.id,
+		IFNULL(ws.name,t.type_num) as `name`,
+		t.`day_count` as dayCount,
+		t.`create_date` as createDate,
+		t.gold as gold,
+		concat_ws('-',ifnull(t.type,''),ifnull(t.pool_type,'')) AS pakgeType
+		FROM
+		wp_strategy_detail t left join wp_strate ws on t.strategy_id = ws.id
+		<where>
+			<if test="userId != null and userId != ''">
+				AND t.user_id =#{userId}
+			</if>
+		</where>
+		ORDER BY
+		t.create_date desc
+	</select>
+
+    <select id="selectOne" parameterType="com.cn.poker.entity.WpStrategyDetailEntity" resultType="com.cn.poker.entity.WpStrategyDetailEntity">
+       		SELECT
+			t.`id`,
+			t.`user_id`,
+			t.`start_date`,
+			t.`end_date`,
+			t.`pool_type`,
+			t.`type`,
+			t.`gold`,
+			t.`type_num`,
+			t.`create_date`,
+			t.`strategy_id`,
+			t.`day_count`
+		FROM
+			wp_strategy_detail t
+              <where>
+                  <if test="userId != null and userId != ''">
+                     AND t.`user_id` = #{userId}
+                  </if>
+                  <if test="type != null and type != ''">
+                      AND t.`type` =  #{type}
+                  </if>
+                  <if test="poolType != null and poolType != ''">
+                      AND t.`pool_type` = #{poolType}
+                  </if>
+                  <if test="strategyId != null and strategyId != ''">
+                      AND t.`strategy_id` = #{strategyId}
+                  </if>
+              </where>
+         order by t.create_date desc limit 1
+    </select>
+
+	<select id="selectByUserId" resultType="com.cn.poker.entity.WpStrategyDetailEntity">
+		SELECT
+			`user_id`,
+			`start_date`,
+			`end_date`,
+			`pool_type`,
+			`type`,
+			`gold`,
+			`type_num`,
+			`create_date`,
+			`strategy_id`,
+			`day_count`
+			from wp_strategy_detail
+		where user_id = #{userId} and	type_num = #{type}
+			<!--<where>
+				<if test="userId!=null and userId != ''">
+					and user_id = #{userId}
+				</if>
+				<if test="userId!=null and userId != ''">
+				and	type = #{type}
+				</if>
+			</where>-->
+		order by create_date desc  limit 1
+	</select>
+</mapper>
