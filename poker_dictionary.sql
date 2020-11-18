@@ -1411,6 +1411,33 @@ CREATE TABLE `wp_wppay` (
   `ip_address` varchar(25) NOT NULL,
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `wp_strate_pack_sum` (
+  `id` int(11) NOT NULL COMMENT '主键',
+  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
+  `type` int(1) DEFAULT NULL COMMENT '类型:1.单挑， 2.6人桌，3.8人桌',
+  `pool_type` int(1) DEFAULT NULL COMMENT '底池类型:1单次底池，2. 3bet底池，3. 4bet底池',
+  `start_time` datetime DEFAULT NULL COMMENT '开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '结束时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `inx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='打包购买策略包汇总';
+
+
+CREATE TABLE `wp_strate_single_sum` (
+  `id` int(11) NOT NULL COMMENT '主键',
+  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
+  `package_id` int(11) DEFAULT NULL COMMENT '策略包id',
+  `type` int(1) DEFAULT NULL COMMENT '类型:1.单挑， 2.6人桌，3.8人桌',
+  `pool_type` int(1) DEFAULT NULL COMMENT '底池类型:1单次底池，2. 3bet底池，3. 4bet底池',
+  `start_time` datetime DEFAULT NULL COMMENT '开始时间',
+  `end_time` datetime DEFAULT NULL COMMENT '结束时间',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `inx_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='单个购买策略包汇总';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

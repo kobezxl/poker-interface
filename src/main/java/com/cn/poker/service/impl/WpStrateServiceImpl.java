@@ -226,5 +226,40 @@ public class WpStrateServiceImpl implements WpStrateService {
 		}
 	}
 
+		@Override
+		public R packagTypeV1(StrateInfoVo strateInfoVo) {
+			WpStragePriceList wpStragePriceList = new WpStragePriceList();
+			List<WpStragePrice> list = wpStrateManager.packagType();
+			WpIceInfo wpIceInfo = wpStrateManager.selectGoldByUserId(strateInfoVo.getUserId());
+			for (WpStragePrice wpStragePrice : list) {
+				//查看用户是否已购买
+				WpStrategyDetailEntity wpStrategyDetailEntity = wpStrategyDetailManager.selectByUserId(wpStragePrice.getType(), strateInfoVo.getUserId());
+				if (wpStrategyDetailEntity == null) {
+					wpStragePrice.setStatus(0);//是否已购买: 1. 是   0. 否
+				} else {
+					if (wpStrategyDetailEntity.getDayCount() == -1) {
+						wpStragePrice.setStatus(1);//是否已购买: 1. 是   0. 否
+						wpStragePrice.setStartDate(wpStrategyDetailEntity.getStartDate());
+						wpStragePrice.setEndDate(wpStrategyDetailEntity.getEndDate());
+					} else {
+						if (wpStrategyDetailEntity.getStartDate().before(new Date()) && wpStrategyDetailEntity.getEndDate().after(new Date())) {
+							wpStragePrice.setStatus(1);//是否已购买: 1. 是   0. 否
+							wpStragePrice.setStartDate(wpStrategyDetailEntity.getStartDate());
+							wpStragePrice.setEndDate(wpStrategyDetailEntity.getEndDate());
+						} else {
+							wpStragePrice.setStatus(0);//是否已购买: 1. 是   0. 否
+						}
+					}
+				}
+			}
+			wpStragePriceList.setList(list);
+			if (wpIceInfo != null) {
+				wpStragePriceList.setTotalGold(wpIceInfo.getIceHaveMoney().intValue());
+				return CommonUtils.msg(wpStragePriceList);
+			} else {
+				return R.error("用户信息不存在");
+			}
+		}
+
 
 }

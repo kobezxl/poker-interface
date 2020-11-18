@@ -108,4 +108,14 @@ public class WpStrateController extends AbstractController {
 	public R packagType(@RequestBody StrateInfoVo strateInfoVo) {
 		return wpStrateService.packagType(strateInfoVo);
 	}
+
+	/**
+	 * 打包购买类型列表--画板备份2
+	 * @param strateInfoVo
+	 * @return
+	 */
+	@RequestMapping("/packagTypeV1")
+	public R packagTypeV1(@RequestBody StrateInfoVo strateInfoVo) {
+		return wpStrateService.packagTypeV1(strateInfoVo);
+	}
 }

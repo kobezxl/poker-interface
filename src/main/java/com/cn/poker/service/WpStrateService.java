@@ -67,4 +67,6 @@ public interface WpStrateService {
     Page<WpRecordVo> listRecord(Map<String, Object> params);
 
     R packagType(StrateInfoVo strateInfoVo);
+
+    R packagTypeV1(StrateInfoVo strateInfoVo);
 }
