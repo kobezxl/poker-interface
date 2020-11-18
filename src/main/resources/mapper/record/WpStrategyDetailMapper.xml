@@ -174,4 +174,55 @@
 			</where>-->
 		order by create_date desc  limit 1
 	</select>
+
+
+	<select id="selectByUserIdV1" resultType="com.cn.poker.entity.WpStrategyDetailEntity">
+		SELECT
+			`user_id`,
+			`start_date`,
+			`end_date`,
+			`pool_type`,
+			`type`,
+			`gold`,
+			`type_num`,
+			`create_date`,
+			`strategy_id`,
+			`day_count`
+			from wp_strategy_detail
+		where user_id = #{userId} and	type_num = #{type}  and strategy_id is NULL and end_date > sysdate()  order by create_date desc  limit 1
+			<!--<where>
+				<if test="userId!=null and userId != ''">
+					and user_id = #{userId}
+				</if>
+				<if test="userId!=null and userId != ''">
+				and	type = #{type}
+				</if>
+			</where>-->
+		order by create_date desc  limit 1
+	</select>
+
+	<select id="selectByUserIdV2" resultType="com.cn.poker.entity.WpStrategyDetailEntity">
+		SELECT
+			`user_id`,
+			`start_date`,
+			`end_date`,
+			`pool_type`,
+			`type`,
+			`gold`,
+			`type_num`,
+			`create_date`,
+			`strategy_id`,
+			`day_count`
+			from wp_strategy_detail
+		where user_id = #{userId} and	type_num not in ( #{type}+'-0', #{type}+'-4')  and strategy_id is NULL  order by create_date desc  limit 1
+			<!--<where>
+				<if test="userId!=null and userId != ''">
+					and user_id = #{userId}
+				</if>
+				<if test="userId!=null and userId != ''">
+				and	type = #{type}
+				</if>
+			</where>-->
+		order by create_date desc  limit 1
+	</select>
 </mapper>

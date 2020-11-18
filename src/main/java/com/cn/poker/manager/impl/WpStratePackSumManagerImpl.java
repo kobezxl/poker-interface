@@ -5,6 +5,7 @@ import java.util.List;
 import com.cn.poker.common.entity.Page;
 import com.cn.poker.common.entity.Query;
 import com.cn.poker.dao.WpStratePackSumMapper;
+import com.cn.poker.entity.StrateInfoVo;
 import com.cn.poker.entity.WpStratePackSumEntity;
 import com.cn.poker.manager.WpStratePackSumManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,5 +74,24 @@ public class WpStratePackSumManagerImpl implements WpStratePackSumManager {
 		int count = wpStratePackSumMapper.batchRemove(id);
 		return count;
 	}
-	
+
+	/**
+	 *  根据userId  和   type 查询用户打包购买汇总
+	 * @param strateInfoVo
+	 * @return
+	 */
+	@Override
+	public List<WpStratePackSumEntity> getWpStratePackSumByUserId(StrateInfoVo strateInfoVo) {
+		return wpStratePackSumMapper.getWpStratePackSumByUserId(strateInfoVo);
+	}
+
+	/**
+	 * 批量初始化用户打包购买策略包汇总
+	 * @param list
+	 */
+	@Override
+	public void insertBatch(List<WpStratePackSumEntity> list) {
+		wpStratePackSumMapper.insertBatch(list);
+	}
+
 }

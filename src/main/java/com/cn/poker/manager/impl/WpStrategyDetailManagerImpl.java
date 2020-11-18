@@ -85,4 +85,13 @@ public class WpStrategyDetailManagerImpl implements WpStrategyDetailManager {
 		return wpStrategyDetailMapper.selectByUserId(type,userId);
 	}
 
+	@Override
+	public WpStrategyDetailEntity selectByUserIdV1(String type, @NonNull Integer userId) {
+		return wpStrategyDetailMapper.selectByUserIdV1(type,userId);
+	}
+	@Override
+	public WpStrategyDetailEntity selectByUserIdV2(String type, @NonNull Integer userId) {
+		return wpStrategyDetailMapper.selectByUserIdV2(type,userId);
+	}
+
 }
