@@ -1412,7 +1412,7 @@ CREATE TABLE `wp_wppay` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-
+DROP TABLE IF EXISTS `wp_strate_pack_sum`;
 CREATE TABLE `wp_strate_pack_sum` (
   `id` int(11) NOT NULL COMMENT '主键',
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
@@ -1425,7 +1425,7 @@ CREATE TABLE `wp_strate_pack_sum` (
   KEY `inx_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='打包购买策略包汇总';
 
-
+DROP TABLE IF EXISTS `wp_strate_single_sum`;
 CREATE TABLE `wp_strate_single_sum` (
   `id` int(11) NOT NULL COMMENT '主键',
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
