@@ -52,4 +52,8 @@ public interface WpStrategyDetailManager {
     WpStrategyDetailEntity selectOne(WpStrategyDetailEntity wpStrategyDetailEntity);
 
     WpStrategyDetailEntity selectByUserId(String type, @NonNull Integer userId);
+
+    WpStrategyDetailEntity selectByUserIdV1(String type, @NonNull Integer userId);
+
+    WpStrategyDetailEntity selectByUserIdV2(String type, @NonNull Integer userId);
 }
