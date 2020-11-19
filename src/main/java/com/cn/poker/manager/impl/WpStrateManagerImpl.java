@@ -72,7 +72,15 @@ public class WpStrateManagerImpl implements WpStrateManager {
 		return wpStrateMapper.packaging(userId);
 	}
 
-	@Override
+
+/*    job 新用户赠送+初始化 策略包时间汇总
+
+    购买 策略包
+
+1.全部策略包 有 购买 (排除系统赠送的),执行策略包 不允许 购买
+2.购买过支线策略包 再去购买全部策略包，支线策略包按剩余天数折算成钻石抵扣，购买完全部策略包清空支线策略时间，按全部策略包重新计算、
+            3.同策略多次充值 ，时间累计增加*/
+    @Override
     @Transactional(rollbackFor = Exception.class)
 	public void saveOrer(OrderVo orderVo) throws Exception{
         WpStrategyDetailEntity wp = new WpStrategyDetailEntity();

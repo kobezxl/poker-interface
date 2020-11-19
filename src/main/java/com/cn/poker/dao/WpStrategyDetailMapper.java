@@ -31,4 +31,7 @@ public interface WpStrategyDetailMapper extends BaseMapper<WpStrategyDetailEntit
     WpStrategyDetailEntity selectOne(WpStrategyDetailEntity wpStrategyDetailEntity);
 
     WpStrategyDetailEntity selectByUserId(@Param("type") String type, @Param("userId") Integer userId);
+    WpStrategyDetailEntity selectByUserIdV1(@Param("type") String type, @Param("userId") Integer userId);
+
+    WpStrategyDetailEntity selectByUserIdV2(@Param("type") String type, @Param("userId")  Integer userId);
 }

@@ -123,4 +123,23 @@
 		</foreach>
 	</delete>
 
+	<select id="selectUser" resultType="java.lang.Long">
+		SELECT
+		`ID`
+		FROM
+		wp_users
+		WHERE
+		bl_status = 0
+	</select>
+
+	<update id="batchUpdateUser">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update wp_users
+			<set>
+				bl_status=1
+			</set>
+			where  id = #{item.id}
+		</foreach>
+	</update>
+
 </mapper>
