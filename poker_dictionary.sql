@@ -1440,6 +1440,10 @@ CREATE TABLE `wp_strate_single_sum` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='单个购买策略包汇总';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+ALTER TABLE `poker_dictionary`.`wp_users`
+ADD COLUMN `bl_status` int(1) NULL DEFAULT 0 COMMENT '是否初始化购买汇总:0否   1 是' AFTER `reg_ip`;
+
 --
 -- Dumping data for table `wp_wppay`
 --
