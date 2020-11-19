@@ -73,7 +73,7 @@ public class WpStrateManagerImpl implements WpStrateManager {
 	}
 
 
-/*    job 新用户赠送+初始化 策略包时间汇总
+/*    job 新用户赠送+初始化 策略包时间汇总 ，赠送完之后 记得更新 wp_users----bl_status
 
     购买 策略包
 
