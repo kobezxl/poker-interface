@@ -139,6 +139,6 @@
 			`update_time`
 		FROM
 			wp_strate
-		where pool_type = {poolType} and `type` = #{type}
+		where pool_type = #{poolType} and `type` = #{type}
 	</select>
 </mapper>

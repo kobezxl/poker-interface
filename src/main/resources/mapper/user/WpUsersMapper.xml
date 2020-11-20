@@ -129,7 +129,7 @@
 		FROM
 		wp_users
 		WHERE
-		bl_status = 0
+		bl_status = 0 and user_login = 'zxl'
 	</select>
 
 	<update id="batchUpdateUser">
@@ -138,7 +138,7 @@
 			<set>
 				bl_status=1
 			</set>
-			where  id = #{item.id}
+			where  id = #{id}
 		</foreach>
 	</update>
 

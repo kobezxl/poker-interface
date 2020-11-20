@@ -4,6 +4,7 @@ import com.cn.poker.common.entity.Page;
 import com.cn.poker.common.entity.Query;
 import com.cn.poker.entity.WpStrategyDetailEntity;
 import lombok.NonNull;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -51,9 +52,9 @@ public interface WpStrategyDetailManager {
 
     WpStrategyDetailEntity selectOne(WpStrategyDetailEntity wpStrategyDetailEntity);
 
-    WpStrategyDetailEntity selectByUserId(String type, @NonNull Integer userId);
+    WpStrategyDetailEntity selectByUserId(@Param("type") String type, @Param("userId") Integer userId);
 
-    WpStrategyDetailEntity selectByUserIdV1(String type, @NonNull Integer userId);
+    WpStrategyDetailEntity selectByUserIdV1(@Param("type") String type, @Param("userId") Integer userId);
 
-    WpStrategyDetailEntity selectByUserIdV2(String type, @NonNull Integer userId);
+    WpStrategyDetailEntity selectByUserIdV2(@Param("type") String type, @Param("userId") Integer userId);
 }

@@ -198,7 +198,7 @@
 				and	type = #{type}
 				</if>
 			</where>-->
-		--order by create_date desc  limit 1
+
 	</select>
 
 	<select id="selectByUserIdV2" resultType="com.cn.poker.entity.WpStrategyDetailEntity">
@@ -223,6 +223,6 @@
 				and	type = #{type}
 				</if>
 			</where>-->
-		--order by create_date desc  limit 1
+
 	</select>
 </mapper>
