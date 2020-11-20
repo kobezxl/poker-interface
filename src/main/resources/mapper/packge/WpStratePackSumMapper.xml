@@ -91,6 +91,9 @@
 		FROM
 		wp_strate_pack_sum
 		WHERE  user_id = #{userId} and type = #{type}
+		<if test="poolType != '' and poolType != null ">
+			and pool_type = #{poolType}
+		</if>
 		ORDER BY
 		pool_type ASC
 	</select>

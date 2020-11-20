@@ -68,7 +68,12 @@ public class WpStrateEntity implements Serializable {
 		super();
 	}
 
-    /**
+	public WpStrateEntity(Integer poolType, Integer type) {
+		this.poolType = poolType;
+		this.type = type;
+	}
+
+	/**
      * setter for id
      * @param id
      */

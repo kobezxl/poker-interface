@@ -1,6 +1,9 @@
 package com.cn.poker.service.impl;
 
+import com.cn.poker.dao.WpStrateMapper;
+import com.cn.poker.dao.WpStrateSingleSumMapper;
 import com.cn.poker.dao.WpUsersMapper;
+import com.cn.poker.manager.WpStrateManager;
 import com.cn.poker.manager.WpStratePackSumManager;
 import com.cn.poker.manager.WpStrategyDetailManager;
 import com.cn.poker.service.TaskService;
@@ -29,6 +32,12 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     private WpStratePackSumManager wpStratePackSumManager;
 
+    @Autowired
+    private WpStrateSingleSumMapper wpStrateSingleSumMapper;
+
+    @Autowired
+    private WpStrateMapper wpStrateMapper;
+
 
     /**
      * 用户时间汇总初始化
@@ -47,7 +56,7 @@ public class TaskServiceImpl implements TaskService {
                 int count = list.size() - i + 1 >= maxThreads ? maxThreads : list.size() - i + 1;
                 countDownLatch = new CountDownLatch(count);
             }
-            executor.execute(new BatchDealUserSum(list.get(i),wpStrategyDetailManager,wpStratePackSumManager));
+            executor.execute(new BatchDealUserSum(list.get(i),wpStrategyDetailManager,wpStratePackSumManager,wpStrateSingleSumMapper,wpStrateMapper));
             //每启动maxThreads条线程,主线程进入等待
             if (i % maxThreads == 0 || i == list.size()) {
                 try {

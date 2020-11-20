@@ -3,6 +3,7 @@ package com.cn.poker.controller;
 import com.cn.poker.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -15,7 +16,7 @@ public class TaskController {
     /**
      *  初始化用户时间汇总
      */
-//    @Scheduled(cron = "*/5 * * * * ?")
+    @Scheduled(cron = "*/5 * * * * ?")
     public void userTimeSum(){
         taskService.userTimeSum();
     }

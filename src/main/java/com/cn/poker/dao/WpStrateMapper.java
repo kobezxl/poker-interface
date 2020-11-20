@@ -43,4 +43,6 @@ public interface WpStrateMapper extends BaseMapper<WpStrateEntity> {
     void subtract(WpIceInfo wpIceInfo1);
 
     List<WpStragePrice>  packagType();
+
+    List<WpStrateEntity> getList(WpStrateEntity wpStrateEntity);
 }

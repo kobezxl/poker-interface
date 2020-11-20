@@ -126,4 +126,19 @@
    <select id="packagType"   resultType="com.cn.poker.entity.WpStragePrice">
        SELECT  id ,month,year,forver,type from wp_strategy_price where type not in ('2-0','3-0') order by id
    </select>
+	<select id="getList" resultType="com.cn.poker.entity.WpStrateEntity">
+			SELECT
+			`id`,
+			`pool_type`,
+			`type`,
+			`name`,
+			`price`,
+			`day_count`,
+			`sort`,
+			`create_time`,
+			`update_time`
+		FROM
+			wp_strate
+		where pool_type = {poolType} and `type` = #{type}
+	</select>
 </mapper>

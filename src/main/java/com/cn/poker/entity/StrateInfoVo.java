@@ -29,6 +29,12 @@ public class StrateInfoVo {
         this.forver = forver;
     }
 
+    public StrateInfoVo(@NonNull Integer userId, Object type, Integer poolType) {
+        this.userId = userId;
+        this.type = type;
+        this.poolType = poolType;
+    }
+
     public StrateInfoVo() {
     }
 }

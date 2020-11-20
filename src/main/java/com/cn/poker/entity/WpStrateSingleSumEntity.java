@@ -58,7 +58,16 @@ public class WpStrateSingleSumEntity implements Serializable {
 		super();
 	}
 
-    /**
+	public WpStrateSingleSumEntity(Integer userId, Integer packageId, Integer type, Integer poolType, Date startTime, Date endTime) {
+		this.userId = userId;
+		this.packageId = packageId;
+		this.type = type;
+		this.poolType = poolType;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+
+	/**
      * setter for id
      * @param id
      */
