@@ -138,7 +138,7 @@
 			<set>
 				bl_status=1
 			</set>
-			where  id = #{id}
+			where  id = #{item}
 		</foreach>
 	</update>
 

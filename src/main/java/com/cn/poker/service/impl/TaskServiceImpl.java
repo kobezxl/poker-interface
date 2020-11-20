@@ -48,26 +48,29 @@ public class TaskServiceImpl implements TaskService {
         List<Long> list = wpUsersMapper.selectUser();
         CountDownLatch countDownLatch = null;
         int maxThreads = 50;
-        for (int i = 0; i < list.size(); i++) {
+        if(list!=null && list.size()>0){
+            for (int i = 1; i <= list.size(); i++) {
 
-            //采用多线程处理请求
-            //说明是新的开始
-            if ((i - 1) % maxThreads == 0) {
-                int count = list.size() - i + 1 >= maxThreads ? maxThreads : list.size() - i + 1;
-                countDownLatch = new CountDownLatch(count);
-            }
-            executor.execute(new BatchDealUserSum(list.get(i),wpStrategyDetailManager,wpStratePackSumManager,wpStrateSingleSumMapper,wpStrateMapper));
-            //每启动maxThreads条线程,主线程进入等待
-            if (i % maxThreads == 0 || i == list.size()) {
-                try {
-                    countDownLatch.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                //采用多线程处理请求
+                //说明是新的开始
+                if ((i - 1) % maxThreads == 0) {
+                    int count = list.size() - i + 1 >= maxThreads ? maxThreads : list.size() - i + 1;
+                    countDownLatch = new CountDownLatch(count);
                 }
-            }
+                executor.execute(new BatchDealUserSum(list.get(i-1),countDownLatch,wpStrategyDetailManager,wpStratePackSumManager,wpStrateSingleSumMapper,wpStrateMapper));
+                //每启动maxThreads条线程,主线程进入等待
+                if (i % maxThreads == 0 || i == list.size()) {
+                    try {
+                        countDownLatch.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
 
+            }
+            wpUsersMapper.batchUpdateUser(list);
         }
-        wpUsersMapper.batchUpdateUser(list);
+
 
     }
 

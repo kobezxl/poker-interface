@@ -9,6 +9,7 @@ import com.cn.poker.manager.WpStrategyDetailManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * 批量处理用户时间汇总
@@ -35,12 +36,14 @@ public class BatchDealUserSum implements Runnable{
     private WpStratePackSumManager wpStratePackSumManager;
     private WpStrateSingleSumMapper wpStrateSingleSumMapper;
     private WpStrateMapper wpStrateMapper;
-    public BatchDealUserSum(Long userId, WpStrategyDetailManager wpStrategyDetailManager, WpStratePackSumManager wpStratePackSumManager, WpStrateSingleSumMapper wpStrateSingleSumMapper, WpStrateMapper wpStrateMapper) {
+    private CountDownLatch countDownLatch;
+    public BatchDealUserSum(Long userId, CountDownLatch countDownLatch, WpStrategyDetailManager wpStrategyDetailManager, WpStratePackSumManager wpStratePackSumManager, WpStrateSingleSumMapper wpStrateSingleSumMapper, WpStrateMapper wpStrateMapper) {
         this.userId = userId;
         this.wpStrategyDetailManager = wpStrategyDetailManager;
         this.wpStratePackSumManager = wpStratePackSumManager;
         this.wpStrateSingleSumMapper = wpStrateSingleSumMapper;
         this.wpStrateMapper = wpStrateMapper;
+        this.countDownLatch = countDownLatch;
     }
 
     @Override
@@ -94,7 +97,7 @@ public class BatchDealUserSum implements Runnable{
             }
 
         }
-
+        countDownLatch.countDown();
 
 
     }
