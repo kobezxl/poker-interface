@@ -4,45 +4,44 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-
 /**
  * 打包购买策略包汇总
  * @author <>
  */
-public class WpStratePackSumEntity implements Serializable {
-	
+public class WpStratePackSumVo implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 主键
 	 */
 	private Integer id;
-	
+
 	/**
 	 * 用户id
 	 */
 	private Integer userId;
-	
+
 	/**
 	 * 类型:1.单挑， 2.6人桌，3.8人桌
 	 */
 	private Integer type;
-	
+
 	/**
 	 * 底池类型:1单次底池，2. 3bet底池，3. 4bet底池
 	 */
 	private Integer poolType;
-	
+
 	/**
 	 * 开始时间
 	 */
 	private Date startTime;
-	
+
 	/**
 	 * 结束时间
 	 */
 	private Date endTime;
-	
+
 	/**
 	 * 更新时间
 	 */
@@ -50,46 +49,7 @@ public class WpStratePackSumEntity implements Serializable {
 
 	private int status;   //是否已购:1是  0.否
 
-
-	private int month;
-	private int year;
-	private int forver;
-
-	private int daySum;
-
-	public int getDaySum() {
-		return daySum;
-	}
-
-	public void setDaySum(int daySum) {
-		this.daySum = daySum;
-	}
-
-	public int getMonth() {
-		return month;
-	}
-
-	public void setMonth(int month) {
-		this.month = month;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public void setYear(int year) {
-		this.year = year;
-	}
-
-	public int getForver() {
-		return forver;
-	}
-
-	public void setForver(int forver) {
-		this.forver = forver;
-	}
-
-	public WpStratePackSumEntity() {
+	public WpStratePackSumVo() {
 		super();
 	}
 

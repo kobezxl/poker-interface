@@ -94,4 +94,13 @@ public class WpStratePackSumManagerImpl implements WpStratePackSumManager {
 		wpStratePackSumMapper.insertBatch(list);
 	}
 
+	/**
+	 * 批量更新用户打包购买策略包汇总
+	 * @param list
+	 */
+	@Override
+	public void updateBatch(List<WpStratePackSumEntity> list) {
+		wpStratePackSumMapper.updateBatch(list);
+	}
+
 }

@@ -84,6 +84,17 @@ public class WpStrateController extends AbstractController {
 	 * @param orderVo
 	 * @return
 	 */
+	@RequestMapping("/buyV1")
+	public R saveOrerV1(@RequestBody OrderVo orderVo) {
+		return wpStrateService.saveOrerV1(orderVo);
+	}
+
+
+	/**
+	 * 单个策略包购买
+	 * @param orderVo
+	 * @return
+	 */
 	@RequestMapping("/buy")
 	public R saveOrer(@RequestBody OrderVo orderVo) {
 		return wpStrateService.saveOrer(orderVo);

@@ -57,15 +57,44 @@
 	<update id="update">
 		UPDATE wp_strate_pack_sum
 	 	<set>
-			<if test="userId != null">`user_id` = #{userId}, </if>
-			<if test="type != null">`type` = #{type}, </if>
-			<if test="poolType != null">`pool_type` = #{poolType}, </if>
 			<if test="startTime != null">`start_time` = #{startTime}, </if>
 			<if test="endTime != null">`end_time` = #{endTime}, </if>
-			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+			<if test="updateTime != null">`update_time` = now()</if>
 		</set>
 		WHERE
-			id = #{id}
+		user_id = #{userId} and type = #{type} and pool_type = #{poolType}
+	</update>
+
+	<update id="update1">
+		UPDATE wp_strate_pack_sum
+	 	<set>
+			<if test="endTime != null">`end_time` = date_add(end_time,interval #{daySum} day), </if>
+			<if test="updateTime != null">`update_time` = now()</if>
+		</set>
+		WHERE
+		user_id = #{userId} and type = #{type} and pool_type = #{poolType}
+	</update>
+
+	<update id="update2">
+		UPDATE wp_strate_pack_sum
+	 	<set>
+			<if test="endTime != null">`end_time` = date_add(end_time,interval #{daySum} day), </if>
+			<if test="updateTime != null">`update_time` = now()</if>
+		</set>
+		WHERE
+		user_id = #{userId} and type = #{type}
+	</update>
+
+
+	<update id="update3">
+		UPDATE wp_strate_pack_sum
+		<set>
+			<if test="startTime != null">`start_time` = #{startTime}, </if>
+			<if test="endTime != null">`end_time` = #{endTime}, </if>
+			<if test="updateTime != null">`update_time` = now()</if>
+		</set>
+		WHERE
+		user_id = #{userId} and type = #{type}
 	</update>
 	
 	<delete id="batchRemove">
@@ -81,18 +110,21 @@
 
 	<select id="getWpStratePackSumByUserId" parameterType="com.cn.poker.entity.StrateInfoVo" resultType="com.cn.poker.entity.WpStratePackSumEntity">
 		SELECT
-		`id`,
-		`user_id`,
-		`type`,
-		`pool_type`,
-		`start_time`,
-		`end_time`,
-		`update_time`
+		t.`id`,
+		t.`user_id`,
+		t.`type`,
+		t.`pool_type`,
+		t.`start_time`,
+		t.`end_time`,
+		t.`update_time`,
+		wp.`month`,
+		wp.`year`,
+		wp.forver
 		FROM
-		wp_strate_pack_sum
-		WHERE  user_id = #{userId} and type = #{type}
+		wp_strate_pack_sum t   left join wp_strategy_price wp on CONCAT_WS('-',t.type,t.pool_type) = wp.type
+		WHERE  t.user_id = #{userId} and t.type = #{type}
 		<if test="poolType != '' and poolType != null ">
-			and pool_type = #{poolType}
+			and t.pool_type = #{poolType}
 		</if>
 		ORDER BY
 		pool_type ASC
@@ -110,4 +142,53 @@
 		</foreach>
 	</insert>
 
+	<update id="updateBatch" parameterType="java.util.List">
+		<foreach collection="stratePackSumList" item="item" index="index" open="" close="" separator=";">
+			update wp_strate_pack_sum t
+			<set>
+				t.update_time = sysdate(),
+				t.start_time = #{item.startTime},
+				t.end_time = #{item.endTime}
+			</set>
+			where  t.user_id = #{item.userId} and t.type = #{item.type} and t.pool_type = #{item.poolType}
+		</foreach>
+	</update>
+
+
+	<select id="selectByUserIdAll" parameterType="com.cn.poker.entity.OrderVo" resultType="com.cn.poker.entity.WpStratePackSumEntity">
+		SELECT
+		t.`id`,
+		t.`user_id`,
+		t.`type`,
+		t.`pool_type`,
+		t.`start_time`,
+		t.`end_time`,
+		t.`update_time`
+		FROM wp_strate_pack_sum t where t.user_id = #{userId} and t.type=#{type} and t.pool_type = 4 and t.end_time >sysdate()
+	</select>
+
+	<select id="selectByUserIdOne" parameterType="com.cn.poker.entity.OrderVo" resultType="com.cn.poker.entity.WpStratePackSumEntity">
+		SELECT
+		t.`id`,
+		t.`user_id`,
+		t.`type`,
+		t.`pool_type`,
+		t.`start_time`,
+		t.`end_time`,
+		t.`update_time`
+		FROM wp_strate_pack_sum t where t.user_id = #{userId} and t.type=#{type} and t.pool_type = #{poolType} and t.end_time >sysdate()
+	</select>
+
+
+	<select id="selectByUserIdList" parameterType="com.cn.poker.entity.OrderVo" resultType="com.cn.poker.entity.WpStratePackSumEntity">
+		SELECT
+		t.`id`,
+		t.`user_id`,
+		t.`type`,
+		t.`pool_type`,
+		t.`start_time`,
+		t.`end_time`,
+		t.`update_time`
+		FROM wp_strate_pack_sum t where t.user_id = #{userId} and t.type=#{type} and t.pool_type != 4 and t.end_time >sysdate()
+	</select>
 </mapper>

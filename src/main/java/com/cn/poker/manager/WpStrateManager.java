@@ -57,6 +57,13 @@ public interface WpStrateManager {
      */
     void saveOrer(OrderVo orderVo) throws  Exception;
 
+    /**
+     * 添加投注记录
+     * @param orderVo
+     */
+    void saveOrerV1(OrderVo orderVo) throws  Exception;
+
+
     List<WpRecordVo> listRecord(Page<WpRecordVo> page, Query query);
 
     List<WpStragePrice>  packagType();

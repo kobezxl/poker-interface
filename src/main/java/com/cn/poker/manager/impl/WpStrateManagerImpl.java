@@ -1,5 +1,6 @@
 package com.cn.poker.manager.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +8,8 @@ import com.cn.poker.common.entity.Page;
 import com.cn.poker.common.entity.Query;
 import com.cn.poker.common.util.DateUtils;
 import com.cn.poker.dao.WpStrateMapper;
+import com.cn.poker.dao.WpStratePackSumMapper;
+import com.cn.poker.dao.WpStrateSingleSumMapper;
 import com.cn.poker.dao.WpStrategyDetailMapper;
 import com.cn.poker.entity.*;
 import com.cn.poker.manager.WpStrateManager;
@@ -28,6 +31,10 @@ public class WpStrateManagerImpl implements WpStrateManager {
 	private WpStrateMapper wpStrateMapper;
 	@Autowired
 	private WpStrategyDetailMapper wpStrategyDetailMapper;
+	@Autowired
+    private WpStratePackSumMapper wpStratePackSumMapper;
+	@Autowired
+    private WpStrateSingleSumMapper wpStrateSingleSumMapper;
 
     /**
      * 分页查询
@@ -159,6 +166,239 @@ public class WpStrateManagerImpl implements WpStrateManager {
         wpStrateMapper.subtract(wpIceInfo1);
 
 	}
+
+
+	@Override
+    @Transactional(rollbackFor = Exception.class)
+	public void saveOrerV1(OrderVo orderVo) throws Exception{
+        WpStrategyDetailEntity wp = new WpStrategyDetailEntity();
+        StrateInfoVo strateInfoVo = new StrateInfoVo();
+        int gold = 0;
+        //1.查询用户钻石
+        WpIceInfo wpIceInfo = wpStrateMapper.selectGoldByUserId(orderVo.getUserId());
+        if (wpIceInfo==null) {
+            throw new Exception("钻石不够");
+        }
+
+        if (orderVo.getPackageId()!=null) {
+            if(1==1){
+                throw new Exception("暂不支持单个策略包购买");
+            }
+            //先判断有没有全部策略包
+            WpStrateEntity wpStrate = wpStrateMapper.getObjectById(orderVo.getPackageId());
+            strateInfoVo.setId(orderVo.getPackageId());
+            StrateInfoVo wpStrateInfo = wpStrateMapper.getWpStrateInfo(strateInfoVo);
+            int count = 0;
+
+            wp.setStrategyId(orderVo.getPackageId());
+            wp.setCreateDate(new Date());
+            wp.setPoolType(wpStrate.getPoolType());
+            wp.setType(wpStrate.getType());
+            int dayCount = orderVo.getDayCount();
+            if (dayCount==1) {
+                count=30;
+                gold = wpStrateInfo.getMonth();
+            }else if (dayCount==2){
+                count=365;
+                gold=wpStrateInfo.getYear();
+            }else if(dayCount==3){
+                count=-1;
+                gold=wpStrateInfo.getForver();
+            }
+            wp.setDayCount(count);
+            wp.setStartDate(new Date());
+            wp.setEndDate(DateUtils.getDateAfter(count));
+            wp.setUserId(orderVo.getUserId());
+            wp.setGold(gold);
+            wp.setTypeNum(wpStrateInfo.getType()+"");
+            if ((wpIceInfo.getIceHaveMoney()-wpIceInfo.getIceGetMoney())<gold) {
+                throw new Exception("钻石不够,所需钻石:"+gold);
+            }
+            wpStrategyDetailMapper.save(wp);
+        }else {
+        /*    1.打包购买
+             2.有全量策略包，不支持支线策略包
+            3.购买过支线策略包*/
+
+
+            Integer poolType = orderVo.getPoolType();
+            if (poolType != 4) {  //非全量购买
+                //查全部策略包
+                WpStratePackSumEntity wpStratePackSumEntity = wpStratePackSumMapper.selectByUserIdAll(orderVo);
+                //如果有全部策略包,提示暂不支持购买
+                if (wpStratePackSumEntity != null) {
+                    throw new Exception("你有" + (poolType == 3 ? "6" : "8") + "人桌全部策略包,暂不能购买" + (poolType == 3 ? "6" : "8") + "人桌支线策略包");
+                } else {
+                    //如果没有全部策略包，查看当前购买的支线策略包
+                    wpStratePackSumEntity = wpStratePackSumMapper.selectByUserIdOne(orderVo);
+                    if (wpStratePackSumEntity == null) {
+                        //如果当前购买的支线策略包为空，直接购买
+                        saveAndbuy(orderVo,wpIceInfo);
+                        wpStratePackSumMapper.update(getWpStratePackSumEntity(orderVo));
+                        wpStrateSingleSumMapper.update(getwpStrateSingleSum(orderVo));
+                        //购买之后 重置打包策略包的汇总 wp_strate_pack_sum
+                        //如果当前购买的支线策略包不为空，购买之后时间累加
+                    } else {
+                        saveAndbuy(orderVo,wpIceInfo);
+                        wpStratePackSumMapper.update1(getWpStratePackSumEntity(orderVo));
+                        wpStrateSingleSumMapper.update1(getwpStrateSingleSum(orderVo));
+                    }
+                }
+            } else {
+                //全量购买
+                WpStratePackSumEntity wpStratePackSumEntity = wpStratePackSumMapper.selectByUserIdAll(orderVo);
+                if (wpStratePackSumEntity!=null) {  //说明没有支线策略包，直接累加
+                    saveAndbuy(orderVo,wpIceInfo);
+                    wpStratePackSumMapper.update2(getWpStratePackSumEntity(orderVo));
+                    wpStrateSingleSumMapper.update2(getwpStrateSingleSum(orderVo));
+                }else {//先查有没有支线策略包
+                    List<WpStratePackSumEntity> list =  wpStratePackSumMapper.selectByUserIdList(orderVo);   //poolType !=4
+                    if (list!=null && list.size()>0) {//支线策略包按剩余天数折算成钻石抵扣
+                        for (WpStratePackSumEntity stratePackSumEntity : list) {
+                            Long time = DateUtils.getTime(wpStratePackSumEntity.getStartTime(), wpStratePackSumEntity.getEndTime());
+                            Long time1 = DateUtils.getTime(wpStratePackSumEntity.getStartTime(), new Date());
+                            double percent = (time1.doubleValue()) / (time.doubleValue());
+                            strateInfoVo = new StrateInfoVo();
+                            strateInfoVo.setType(stratePackSumEntity.getType());
+                            strateInfoVo.setPoolType(stratePackSumEntity.getPoolType());
+                            StrateInfoVo wpStrateInfo1 = wpStrateMapper.getWpStrateInfo1(strateInfoVo);
+                            //小于365天  按月计算  大于365天  按 年计算
+                            Integer daycount = DateUtils.getDaycount(wpStratePackSumEntity.getStartTime(), wpStratePackSumEntity.getEndTime());
+                            int mortgage = 0;
+                            if(daycount<365){
+                                int month = wpStrateInfo1.getMonth();
+                                int i = daycount / 30;
+                                int coin = new Double(Math.floor(i * month * percent)).intValue();//消耗的金币
+                                 mortgage = i * month - coin;   //还能抵押
+                            }else {
+                                int year = wpStrateInfo1.getYear();
+                                int i = daycount / 365;
+                                int coin = new Double(Math.floor(i * year * percent)).intValue();//消耗的金币
+                                 mortgage = i * year - coin;   //还能抵押
+                            }
+                            saveAndbuy1(orderVo,wpIceInfo,mortgage);
+                            wpStratePackSumMapper.update3(getWpStratePackSumEntity(orderVo));
+                            wpStrateSingleSumMapper.update3(getwpStrateSingleSum(orderVo));
+                        }
+                    }else {
+                        saveAndbuy(orderVo,wpIceInfo);
+                        wpStratePackSumMapper.update3(getWpStratePackSumEntity(orderVo));
+                        wpStrateSingleSumMapper.update3(getwpStrateSingleSum(orderVo));
+                    }
+                }
+            }
+        }
+
+	}
+
+    private WpStrateSingleSumEntity getwpStrateSingleSum(OrderVo orderVo) {
+        WpStrateSingleSumEntity wpStrateSingleSumEntity = new WpStrateSingleSumEntity();
+        wpStrateSingleSumEntity.setUserId(orderVo.getUserId());
+        wpStrateSingleSumEntity.setType(orderVo.getType());
+        wpStrateSingleSumEntity.setPoolType(orderVo.getPoolType());
+        wpStrateSingleSumEntity.setStartTime(orderVo.getStartDate());
+        wpStrateSingleSumEntity.setEndTime(orderVo.getEndDate());
+        wpStrateSingleSumEntity.setDaySum(orderVo.getDaySum());
+        return wpStrateSingleSumEntity;
+    }
+
+
+    private WpStratePackSumEntity getWpStratePackSumEntity(OrderVo orderVo) {
+        WpStratePackSumEntity wpStratePackSumEntity = new WpStratePackSumEntity();
+        wpStratePackSumEntity.setUserId(orderVo.getUserId());
+        wpStratePackSumEntity.setType(orderVo.getType());
+        wpStratePackSumEntity.setPoolType(orderVo.getPoolType());
+        wpStratePackSumEntity.setStartTime(orderVo.getStartDate());
+        wpStratePackSumEntity.setEndTime(orderVo.getEndDate());
+        wpStratePackSumEntity.setDaySum(orderVo.getDaySum());
+        return wpStratePackSumEntity;
+    }
+
+
+    private void saveAndbuy(OrderVo orderVo,WpIceInfo wpIceInfo) throws Exception{
+        WpStrategyDetailEntity wp = new WpStrategyDetailEntity();
+        StrateInfoVo strateInfoVo = new StrateInfoVo();
+        strateInfoVo.setType(orderVo.getType());
+        strateInfoVo.setPoolType(orderVo.getPoolType());
+        StrateInfoVo wpStrateInfo1 = wpStrateMapper.getWpStrateInfo1(strateInfoVo);
+        wp.setCreateDate(new Date());
+        wp.setPoolType(orderVo.getPoolType());
+        wp.setType(orderVo.getType());
+        int dayCount = orderVo.getDayCount();
+        int gold = 0;
+        int count = 0;
+        if (dayCount==1) {
+            count=30;
+            gold = wpStrateInfo1.getMonth();
+        }else if (dayCount==2){
+            count=365;
+            gold=wpStrateInfo1.getYear();
+        }else if(dayCount==3){
+            count=-1;
+            gold=wpStrateInfo1.getForver();
+        }
+        wp.setDayCount(count);
+        wp.setStartDate(new Date());
+        wp.setEndDate(DateUtils.getDateAfter(count));
+        wp.setUserId(orderVo.getUserId());
+        wp.setGold(gold);
+        wp.setTypeNum(orderVo.getType()+"-"+orderVo.getPoolType());
+        if ((wpIceInfo.getIceHaveMoney()-wpIceInfo.getIceGetMoney())<gold) {
+            throw new Exception("钻石不够,所需钻石:"+gold);
+        }
+        orderVo.setStartDate(wp.getStartDate());
+        orderVo.setEndDate(wp.getEndDate());
+        orderVo.setDaySum(wp.getDayCount());
+        wpStrategyDetailMapper.save(wp);
+
+    //2.增加用户钻石购买记录
+    //3.扣除用户钻石
+    WpIceInfo wpIceInfo1 = new WpIceInfo(0.0,orderVo.getUserId(),new Double(gold));
+        wpStrateMapper.subtract(wpIceInfo1);
+    }
+
+    private void saveAndbuy1(OrderVo orderVo,WpIceInfo wpIceInfo,int coin) throws Exception{
+        WpStrategyDetailEntity wp = new WpStrategyDetailEntity();
+        StrateInfoVo strateInfoVo = new StrateInfoVo();
+        strateInfoVo.setType(orderVo.getType());
+        strateInfoVo.setPoolType(orderVo.getPoolType());
+        StrateInfoVo wpStrateInfo1 = wpStrateMapper.getWpStrateInfo1(strateInfoVo);
+        wp.setCreateDate(new Date());
+        wp.setPoolType(orderVo.getPoolType());
+        wp.setType(orderVo.getType());
+        int dayCount = orderVo.getDayCount();
+        int gold = 0;
+        int count = 0;
+        if (dayCount==1) {
+            count=30;
+            gold = wpStrateInfo1.getMonth();
+        }else if (dayCount==2){
+            count=365;
+            gold=wpStrateInfo1.getYear();
+        }else if(dayCount==3){
+            count=-1;
+            gold=wpStrateInfo1.getForver();
+        }
+        gold = gold - coin;
+        wp.setDayCount(count);
+        wp.setStartDate(new Date());
+        wp.setEndDate(DateUtils.getDateAfter(count));
+        wp.setUserId(orderVo.getUserId());
+        wp.setGold(gold);
+        wp.setTypeNum(orderVo.getType()+"-"+orderVo.getPoolType());
+        if ((wpIceInfo.getIceHaveMoney()-wpIceInfo.getIceGetMoney())<gold) {
+            throw new Exception("钻石不够,所需钻石:"+gold);
+        }
+        orderVo.setStartDate(wp.getStartDate());
+        orderVo.setEndDate(wp.getEndDate());
+        orderVo.setDaySum(wp.getDayCount());
+        wpStrategyDetailMapper.save(wp);
+
+    //2.增加用户钻石购买记录
+    //3.扣除用户钻石
+    WpIceInfo wpIceInfo1 = new WpIceInfo(0.0,orderVo.getUserId(),new Double(gold));
+        wpStrateMapper.subtract(wpIceInfo1);
+    }
 
     @Override
     public List<WpRecordVo> listRecord(Page<WpRecordVo> page, Query search) {

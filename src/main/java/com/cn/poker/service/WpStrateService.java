@@ -69,4 +69,6 @@ public interface WpStrateService {
     R packagType(StrateInfoVo strateInfoVo);
 
     R packagTypeV1(StrateInfoVo strateInfoVo);
+
+    R saveOrerV1(OrderVo orderVo);
 }

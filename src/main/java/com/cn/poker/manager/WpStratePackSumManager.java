@@ -62,4 +62,11 @@ public interface WpStratePackSumManager {
      * @param list
      */
     void insertBatch(List<WpStratePackSumEntity> list);
+
+    /**
+     * 批量更新用户打包购买策略包汇总
+     * @param list
+     */
+    void updateBatch(List<WpStratePackSumEntity> list);
+
 }

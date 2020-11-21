@@ -53,6 +53,15 @@ public class WpStrateSingleSumEntity implements Serializable {
 	 */
 	private Date updateTime;
 	
+	private int daySum;
+
+	public int getDaySum() {
+		return daySum;
+	}
+
+	public void setDaySum(int daySum) {
+		this.daySum = daySum;
+	}
 
 	public WpStrateSingleSumEntity() {
 		super();

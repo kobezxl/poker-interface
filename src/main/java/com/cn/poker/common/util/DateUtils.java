@@ -1,5 +1,7 @@
 package com.cn.poker.common.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,8 +18,36 @@ public class DateUtils {
         return now.getTime();
     }
 
-    public static void main(String[] args) {
-        Date dateAfter = getDateAfter(30);
-        System.out.println(dateAfter);
+    public static void main(String[] args) throws ParseException {
+        double a = 3.5;
+        System.out.println(Math.floor(a));
     }
+
+
+    // 获取两个时间相差分钟数
+    public static long getTime(Date oldTime,Date newTime)  {
+        long NTime =newTime.getTime();
+        //从对象中拿到时间
+        long OTime = oldTime.getTime();
+        long diff=(NTime-OTime);
+        return diff;
+    }
+
+
+
+
+    // 获取两个时间相差分钟数
+    public static Integer getDaycount(Date date1,Date date2) throws ParseException {
+        // 获取相差的天数
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date1);
+        Long timeInMillis1 = calendar.getTimeInMillis();
+        calendar.setTime(date2);
+        long timeInMillis2 = calendar.getTimeInMillis();
+        Long betweenDays =  (timeInMillis2 - timeInMillis1) / (1000L*3600L*24L);
+        return betweenDays.intValue();
+    }
+
+
+
 }

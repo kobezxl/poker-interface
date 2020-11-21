@@ -20,4 +20,17 @@ public interface WpStrateSingleSumMapper extends BaseMapper<WpStrateSingleSumEnt
      * @param list
      */
     void insertBatch(@Param("strateSingleSumList") List<WpStrateSingleSumEntity> list);
+
+
+    /**
+     * 批量插入单个策略包汇总
+     * @param list
+     */
+    void updateBatch(@Param("strateSingleSumList") List<WpStrateSingleSumEntity> list);
+
+    void update1(WpStrateSingleSumEntity wpStrateSingleSumEntity);
+
+    void update2(WpStrateSingleSumEntity wpStrateSingleSumEntity);
+
+    void update3(WpStrateSingleSumEntity wpStrateSingleSumEntity);
 }
