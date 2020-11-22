@@ -2,10 +2,7 @@ package com.cn.poker.service;
 
 import com.cn.poker.common.entity.Page;
 import com.cn.poker.common.entity.R;
-import com.cn.poker.entity.OrderVo;
-import com.cn.poker.entity.StrateInfoVo;
-import com.cn.poker.entity.WpRecordVo;
-import com.cn.poker.entity.WpStrateEntity;
+import com.cn.poker.entity.*;
 
 import java.util.Map;
 
@@ -22,6 +19,13 @@ public interface WpStrateService {
      * @return
      */
 	Page<WpStrateEntity> listWpStrate(Map<String, Object> params);
+
+    /**
+     * 分页查询
+     * @param params
+     * @return
+     */
+	Page<WpStrateSingleSumEntity> listWpStrateV1(Map<String, Object> params);
 
 
     /**

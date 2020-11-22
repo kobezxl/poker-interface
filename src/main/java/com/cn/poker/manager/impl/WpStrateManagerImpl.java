@@ -227,7 +227,7 @@ public class WpStrateManagerImpl implements WpStrateManager {
                 WpStratePackSumEntity wpStratePackSumEntity = wpStratePackSumMapper.selectByUserIdAll(orderVo);
                 //如果有全部策略包,提示暂不支持购买
                 if (wpStratePackSumEntity != null) {
-                    throw new Exception("你有" + (poolType == 3 ? "6" : "8") + "人桌全部策略包,暂不能购买" + (poolType == 3 ? "6" : "8") + "人桌支线策略包");
+                    throw new Exception("你有" + (orderVo.getType() == 2 ? "6" : "8") + "人桌全部策略包,暂不能购买" + (orderVo.getType() == 2 ? "6" : "8") + "人桌支线策略包");
                 } else {
                     //如果没有全部策略包，查看当前购买的支线策略包
                     wpStratePackSumEntity = wpStratePackSumMapper.selectByUserIdOne(orderVo);
@@ -253,18 +253,21 @@ public class WpStrateManagerImpl implements WpStrateManager {
                     wpStrateSingleSumMapper.update2(getwpStrateSingleSum(orderVo));
                 }else {//先查有没有支线策略包
                     List<WpStratePackSumEntity> list =  wpStratePackSumMapper.selectByUserIdList(orderVo);   //poolType !=4
+                    int mortgage = 0;
+                    int total = 0;
                     if (list!=null && list.size()>0) {//支线策略包按剩余天数折算成钻石抵扣
                         for (WpStratePackSumEntity stratePackSumEntity : list) {
-                            Long time = DateUtils.getTime(wpStratePackSumEntity.getStartTime(), wpStratePackSumEntity.getEndTime());
-                            Long time1 = DateUtils.getTime(wpStratePackSumEntity.getStartTime(), new Date());
+                            Date startTime = stratePackSumEntity.getStartTime();
+                            Date endTime = stratePackSumEntity.getEndTime();
+                            Long time = DateUtils.getTime(startTime, endTime);
+                            Long time1 = DateUtils.getTime(startTime, new Date());
                             double percent = (time1.doubleValue()) / (time.doubleValue());
                             strateInfoVo = new StrateInfoVo();
                             strateInfoVo.setType(stratePackSumEntity.getType());
                             strateInfoVo.setPoolType(stratePackSumEntity.getPoolType());
                             StrateInfoVo wpStrateInfo1 = wpStrateMapper.getWpStrateInfo1(strateInfoVo);
                             //小于365天  按月计算  大于365天  按 年计算
-                            Integer daycount = DateUtils.getDaycount(wpStratePackSumEntity.getStartTime(), wpStratePackSumEntity.getEndTime());
-                            int mortgage = 0;
+                            Integer daycount = DateUtils.getDaycount(startTime, endTime);
                             if(daycount<365){
                                 int month = wpStrateInfo1.getMonth();
                                 int i = daycount / 30;
@@ -276,10 +279,11 @@ public class WpStrateManagerImpl implements WpStrateManager {
                                 int coin = new Double(Math.floor(i * year * percent)).intValue();//消耗的金币
                                  mortgage = i * year - coin;   //还能抵押
                             }
-                            saveAndbuy1(orderVo,wpIceInfo,mortgage);
-                            wpStratePackSumMapper.update3(getWpStratePackSumEntity(orderVo));
-                            wpStrateSingleSumMapper.update3(getwpStrateSingleSum(orderVo));
+                            total = total+mortgage;
                         }
+                        saveAndbuy1(orderVo,wpIceInfo,total);
+                        wpStratePackSumMapper.update3(getWpStratePackSumEntity(orderVo));
+                        wpStrateSingleSumMapper.update3(getwpStrateSingleSum(orderVo));
                     }else {
                         saveAndbuy(orderVo,wpIceInfo);
                         wpStratePackSumMapper.update3(getWpStratePackSumEntity(orderVo));

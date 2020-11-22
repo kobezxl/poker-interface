@@ -59,7 +59,7 @@
 	 	<set>
 			<if test="startTime != null">`start_time` = #{startTime}, </if>
 			<if test="endTime != null">`end_time` = #{endTime}, </if>
-			<if test="updateTime != null">`update_time` = now()</if>
+			`update_time` = now()
 		</set>
 		WHERE
 		user_id = #{userId} and type = #{type} and pool_type = #{poolType}
@@ -69,7 +69,7 @@
 		UPDATE wp_strate_pack_sum
 	 	<set>
 			<if test="endTime != null">`end_time` = date_add(end_time,interval #{daySum} day), </if>
-			<if test="updateTime != null">`update_time` = now()</if>
+			`update_time` = now()
 		</set>
 		WHERE
 		user_id = #{userId} and type = #{type} and pool_type = #{poolType}
@@ -79,7 +79,7 @@
 		UPDATE wp_strate_pack_sum
 	 	<set>
 			<if test="endTime != null">`end_time` = date_add(end_time,interval #{daySum} day), </if>
-			<if test="updateTime != null">`update_time` = now()</if>
+			`update_time` = now()
 		</set>
 		WHERE
 		user_id = #{userId} and type = #{type}
@@ -91,7 +91,7 @@
 		<set>
 			<if test="startTime != null">`start_time` = #{startTime}, </if>
 			<if test="endTime != null">`end_time` = #{endTime}, </if>
-			<if test="updateTime != null">`update_time` = now()</if>
+			`update_time` = now()
 		</set>
 		WHERE
 		user_id = #{userId} and type = #{type}

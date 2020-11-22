@@ -9,6 +9,7 @@ import com.cn.poker.common.entity.Page;
 import com.cn.poker.common.entity.Query;
 import com.cn.poker.common.entity.R;
 import com.cn.poker.common.util.CommonUtils;
+import com.cn.poker.dao.WpStrateSingleSumMapper;
 import com.cn.poker.entity.*;
 import com.cn.poker.manager.WpStrateManager;
 import com.cn.poker.manager.WpStratePackSumManager;
@@ -33,6 +34,9 @@ public class WpStrateServiceImpl implements WpStrateService {
 
 	@Autowired
 	private WpStratePackSumManager wpStratePackSumManager;
+
+	@Autowired
+	private WpStrateSingleSumMapper wpStrateSingleSumMapper;
 
     /**
      * 分页查询
@@ -111,6 +115,19 @@ public class WpStrateServiceImpl implements WpStrateService {
             }*/
         }
         page.setRows(rows);
+		return page;
+	}
+
+	/**
+     * 分页查询
+     * @param params
+     * @return
+     */
+	@Override
+	public Page<WpStrateSingleSumEntity> listWpStrateV1(Map<String, Object> params) {
+		Query query = new Query(params);
+		Page<WpStrateSingleSumEntity> page = new Page<>(query);
+		wpStrateSingleSumMapper.listForPage(page, query);
 		return page;
 	}
 
@@ -256,36 +273,6 @@ public class WpStrateServiceImpl implements WpStrateService {
 		List<WpStratePackSumEntity>	 stratePackSumList =  wpStratePackSumManager.getWpStratePackSumByUserId(strateInfoVo);//userId和type
 		 WpIceInfo wpIceInfo = wpStrateManager.selectGoldByUserId(strateInfoVo.getUserId());
 			WpStratePackSumList wpStratePackSumList = new WpStratePackSumList();
-		if(stratePackSumList==null || stratePackSumList.size()==0){
-			//初始化打包策略包汇总
-			//先查全部策略包
-			String type =  strateInfoVo.getType().toString();
-			type = type + "-4";
-			WpStrategyDetailEntity wpStrategyDetailEntity = wpStrategyDetailManager.selectByUserIdV1(type,strateInfoVo.getUserId());
-			if(wpStrategyDetailEntity == null){
-				type =  strateInfoVo.getType().toString();
-				wpStrategyDetailEntity = wpStrategyDetailManager.selectByUserIdV2(type,strateInfoVo.getUserId());
-			}
-			//没有打包购买策略包
-			if(wpStrategyDetailEntity==null){
-				List<WpStratePackSumEntity> list = getStratePackSumList(strateInfoVo.getUserId());
-				wpStratePackSumManager.insertBatch(list);
-			//有打包购买策略包
-			}else {
-				List<WpStratePackSumEntity> list = new ArrayList<>();
-				if(wpStrategyDetailEntity.getDayCount()==-1){   //-1  代表永久
-					list = getStratePackSumListV1(strateInfoVo.getUserId(),wpStrategyDetailEntity,-1);
-				}else {
-					/*if(wpStrategyDetailEntity.getEndDate().after(new Date())){ //截止时间大于当前时间 ，
-					}*/
-					list = getStratePackSumListV1(strateInfoVo.getUserId(),wpStrategyDetailEntity,1);
-				}
-				wpStratePackSumManager.insertBatch(list);
-			}
-			//先查购买记录，有没有
-
-		}
-
 			wpStratePackSumList.setList(stratePackSumList);
 			if (wpIceInfo != null) {
 				wpStratePackSumList.setTotalGold(wpIceInfo.getIceHaveMoney().intValue());

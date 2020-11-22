@@ -5,18 +5,28 @@
 	
 	<select id="listForPage" resultType="com.cn.poker.entity.WpStrateSingleSumEntity">
 		SELECT
-			`id`, 
-			`user_id`, 
-			`package_id`, 
-			`type`, 
-			`pool_type`, 
-			`start_time`, 
-			`end_time`, 
-			`update_time`
+			t.`id`,
+			t.`user_id`,
+			t.`package_id`,
+			t.`type`,
+			t.`pool_type`,
+			t.`start_time`,
+			t.`end_time`,
+			t.`update_time`,
+			wp.name
 		FROM
-			wp_strate_single_sum
+			wp_strate_single_sum t left join  wp_strate wp on t.package_id = wp.id
+		<where>
+			t.user_id = #{userId} and wp.status=1
+			<if test="poolType != null and poolType != ''">
+				AND t.pool_type =#{poolType}
+			</if>
+			<if test="poolType != null and poolType != ''">
+				AND t.type =#{type}
+			</if>
+		</where>
 		ORDER BY
-			id DESC
+			id ASC
 	</select>
 	
 	<insert id="save">
@@ -63,7 +73,7 @@
 	 	<set>
 			<if test="startTime != null">`start_time` = #{startTime}, </if>
 			<if test="endTime != null">`end_time` = #{endTime}, </if>
-			<if test="updateTime != null">`update_time` = now()</if>
+			`update_time` = now()
 		</set>
 		WHERE
         user_id = #{userId} and type = #{type} and pool_type = #{poolType}
@@ -73,7 +83,7 @@
 		UPDATE wp_strate_single_sum
 	 	<set>
 			<if test="endTime != null">`end_time` = date_add(end_time,interval #{daySum} day), </if>
-			<if test="updateTime != null">`update_time` = now()</if>
+			`update_time` = now()
 		</set>
 		WHERE
         user_id = #{userId} and type = #{type} and pool_type = #{poolType}
@@ -83,7 +93,7 @@
 		UPDATE wp_strate_single_sum
 	 	<set>
 			<if test="endTime != null">`end_time` = date_add(end_time,interval #{daySum} day), </if>
-			<if test="updateTime != null">`update_time` = now()</if>
+			`update_time` = now()
 		</set>
 		WHERE
         user_id = #{userId} and type = #{type}
@@ -94,7 +104,7 @@
         <set>
             <if test="startTime != null">`start_time` = #{startTime}, </if>
             <if test="endTime != null">`end_time` = #{endTime}, </if>
-            <if test="updateTime != null">`update_time` = now()</if>
+            `update_time` = now()
         </set>
         WHERE
         user_id = #{userId} and type = #{type}

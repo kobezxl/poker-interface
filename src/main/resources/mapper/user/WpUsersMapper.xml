@@ -129,7 +129,7 @@
 		FROM
 		wp_users
 		WHERE
-		bl_status = 0 and user_login = 'zxl'
+		bl_status = 0
 	</select>
 
 	<update id="batchUpdateUser">

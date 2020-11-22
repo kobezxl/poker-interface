@@ -5,10 +5,7 @@ import java.util.Map;
 import com.cn.poker.common.controller.AbstractController;
 import com.cn.poker.common.entity.Page;
 import com.cn.poker.common.entity.R;
-import com.cn.poker.entity.OrderVo;
-import com.cn.poker.entity.StrateInfoVo;
-import com.cn.poker.entity.WpRecordVo;
-import com.cn.poker.entity.WpStrateEntity;
+import com.cn.poker.entity.*;
 import com.cn.poker.service.WpStrateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,6 +34,15 @@ public class WpStrateController extends AbstractController {
 		return wpStrateService.listWpStrate(params);
 	}
 
+	/**
+	 * 列表
+	 * @param params
+	 * @return
+	 */
+	@RequestMapping("/listV1")
+	public Page<WpStrateSingleSumEntity> listV1(@RequestBody Map<String, Object> params) {
+		return wpStrateService.listWpStrateV1(params);
+	}
 	
 	/**
 	 * 根据id查询详情

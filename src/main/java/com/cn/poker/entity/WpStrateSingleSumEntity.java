@@ -55,6 +55,21 @@ public class WpStrateSingleSumEntity implements Serializable {
 	
 	private int daySum;
 
+	private int status;
+
+	/**
+	 * 策略包
+	 */
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getDaySum() {
 		return daySum;
 	}
@@ -194,6 +209,31 @@ public class WpStrateSingleSumEntity implements Serializable {
      */
 	public Date getUpdateTime() {
 		return updateTime;
+	}
+
+	public int getStatus() {
+		if(this.startTime!=null && this.endTime != null){
+			if(this.startTime.after(this.endTime)){   //永久
+				this.status = 1;
+			}else {
+				if(this.startTime.before(new Date()) && this.endTime.after(new Date())){
+					this.status = 1;
+				}else {
+					this.status = 0;
+				}
+			}
+
+		}else {
+			this.status = 0;
+		}
+		if(this.type==1){
+			status = 1;
+		}
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 }
