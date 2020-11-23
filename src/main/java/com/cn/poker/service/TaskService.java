@@ -6,4 +6,6 @@ public interface TaskService {
      * 初始化用户时间汇总
      */
     void userTimeSum();
+
+    void userTimeSum1();
 }
