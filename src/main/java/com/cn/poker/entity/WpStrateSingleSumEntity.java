@@ -62,6 +62,16 @@ public class WpStrateSingleSumEntity implements Serializable {
 	 */
 	private String name;
 
+	private Date currentTime;
+
+	public Date getCurrentTime() {
+		return new Date();
+	}
+
+	public void setCurrentTime(Date currentTime) {
+		this.currentTime = currentTime;
+	}
+
 	public String getName() {
 		return name;
 	}

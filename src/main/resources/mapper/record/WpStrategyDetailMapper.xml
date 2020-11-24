@@ -214,7 +214,7 @@
 			`strategy_id`,
 			`day_count`
 			from wp_strategy_detail
-		where user_id = #{userId} and	type_num not in ( #{type}+'-0', #{type}+'-4')  and strategy_id is NULL  order by end_date desc  limit 1
+		where user_id = #{userId} and	type_num not in ( #{type}+'-0', #{type}+'-4') and 'type'=#{type}  and  strategy_id  is NULL  order by end_date desc  limit 1
 			<!--<where>
 				<if test="userId!=null and userId != ''">
 					and user_id = #{userId}

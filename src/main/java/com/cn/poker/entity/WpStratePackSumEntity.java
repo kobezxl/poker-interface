@@ -57,6 +57,16 @@ public class WpStratePackSumEntity implements Serializable {
 
 	private int daySum;
 
+	private Date currentTime;
+
+	public Date getCurrentTime() {
+		return new Date();
+	}
+
+	public void setCurrentTime(Date currentTime) {
+		this.currentTime = currentTime;
+	}
+
 	public int getDaySum() {
 		return daySum;
 	}

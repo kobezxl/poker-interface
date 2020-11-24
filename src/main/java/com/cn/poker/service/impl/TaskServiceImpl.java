@@ -80,7 +80,9 @@ public class TaskServiceImpl implements TaskService {
     public void userTimeSum1() {
 
         List<Long> userList = wpUsersMapper.selectUser();
-
+        if (userList==null || userList.size()<1) {
+            return;
+        }
         for (Long aLong : userList) {
             int userIds = aLong.intValue();
             for (int ty = 2; ty <= 3; ty++) {
