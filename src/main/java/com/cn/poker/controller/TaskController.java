@@ -25,7 +25,7 @@ public class TaskController {
     /**
      *  初始化用户时间汇总
      */
-//    @Scheduled(cron = "*/30 * * * * ?")
+//    @Scheduled(cron = "*/2 * * * * ?")
     public void userTimeSum1(){
         taskService.userTimeSum1();
     }
