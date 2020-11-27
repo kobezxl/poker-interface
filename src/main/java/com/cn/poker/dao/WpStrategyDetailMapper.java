@@ -3,6 +3,7 @@ package com.cn.poker.dao;
 import com.cn.poker.common.dao.BaseMapper;
 import com.cn.poker.common.entity.Page;
 import com.cn.poker.common.entity.Query;
+import com.cn.poker.entity.OrderVo;
 import com.cn.poker.entity.WpRecordVo;
 import com.cn.poker.entity.WpStrategyDetailEntity;
 import lombok.NonNull;
@@ -34,4 +35,6 @@ public interface WpStrategyDetailMapper extends BaseMapper<WpStrategyDetailEntit
     WpStrategyDetailEntity selectByUserIdV1(@Param("type") String type, @Param("userId") Integer userId);
 
     WpStrategyDetailEntity selectByUserIdV2(@Param("type") String type, @Param("userId")  Integer userId);
+
+    List<WpStrategyDetailEntity> selectForver(OrderVo orderVo);
 }

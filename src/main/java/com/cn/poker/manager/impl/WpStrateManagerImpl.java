@@ -320,6 +320,15 @@ public class WpStrateManagerImpl implements WpStrateManager {
 
 
     private void saveAndbuy(OrderVo orderVo,WpIceInfo wpIceInfo) throws Exception{
+        int dayCount = orderVo.getDayCount();
+        //判断是否有购买永久策略包，如果有 禁止购买
+        if (dayCount==3) {
+            List<WpStrategyDetailEntity> list = wpStrategyDetailMapper.selectForver(orderVo);
+            if (list!=null && list.size()>0) {
+                throw new Exception("你已有永久策略包,不能重复购买");
+            }
+        }
+
         WpStrategyDetailEntity wp = new WpStrategyDetailEntity();
         StrateInfoVo strateInfoVo = new StrateInfoVo();
         strateInfoVo.setType(orderVo.getType());
@@ -328,7 +337,7 @@ public class WpStrateManagerImpl implements WpStrateManager {
         wp.setCreateDate(new Date());
         wp.setPoolType(orderVo.getPoolType());
         wp.setType(orderVo.getType());
-        int dayCount = orderVo.getDayCount();
+
         int gold = 0;
         int count = 0;
         if (dayCount==1) {
@@ -384,6 +393,9 @@ public class WpStrateManagerImpl implements WpStrateManager {
             gold=wpStrateInfo1.getForver();
         }
         gold = gold - coin;
+        if(gold<0){
+            throw new Exception("剩余的策略包时长高于您要购买的时长 如需要转换请联系客服");
+        }
         wp.setDayCount(count);
         wp.setStartDate(new Date());
         wp.setEndDate(DateUtils.getDateAfter(count));
