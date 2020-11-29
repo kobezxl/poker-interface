@@ -227,6 +227,6 @@
 	</select>
 
 	<select id="selectForver" parameterType="com.cn.poker.entity.OrderVo" resultType="com.cn.poker.entity.WpStrategyDetailEntity">
-		select t.* from wp_strategy_detail t where t.type=#{type} and t.pool_type=#{poolType} and t.end_date &lt; t.start_date
+		select t.* from wp_strate_pack_sum t where t.user_id = #{userId} and t.type=#{type} and t.pool_type=#{poolType} and t.end_date &lt; t.start_date
 	</select>
 </mapper>
