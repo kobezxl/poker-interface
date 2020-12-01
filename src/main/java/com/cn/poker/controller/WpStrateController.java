@@ -2,6 +2,7 @@ package com.cn.poker.controller;
 
 import java.util.Map;
 
+import com.cn.poker.common.annotations.SameUrlData;
 import com.cn.poker.common.controller.AbstractController;
 import com.cn.poker.common.entity.Page;
 import com.cn.poker.common.entity.R;
@@ -90,6 +91,7 @@ public class WpStrateController extends AbstractController {
 	 * @param orderVo
 	 * @return
 	 */
+	@SameUrlData
 	@RequestMapping("/buyV1")
 	public R saveOrerV1(@RequestBody OrderVo orderVo) {
 		return wpStrateService.saveOrerV1(orderVo);
