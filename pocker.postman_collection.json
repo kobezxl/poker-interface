@@ -1,0 +1,1849 @@
+{
+	"info": {
+		"_postman_id": "26303bee-5a09-4fd2-a2b7-8e1983b4cd69",
+		"name": "pocker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userName\":\"zxl\",\n\t\"password\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/poker/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"poker",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "失败",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userName\":\"zxl\",\n\t\"password\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/poker/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"poker",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 24 May 2020 03:15:47 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"msg\":\"登陆失败！\",\"code\":1}"
+				},
+				{
+					"name": "失败",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userName\":\"zxl\",\n\t\"password\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/poker/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"poker",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 May 2020 14:02:32 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"msg\":\"登陆失败！\",\"code\":1}"
+				},
+				{
+					"name": "失败",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userName\":\"zxl\",\n\t\"password\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/poker/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"poker",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 30 May 2020 10:06:44 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"msg\":\"登陆失败！\",\"code\":1}"
+				},
+				{
+					"name": "正常",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userName\":\"zxl\",\n\t\"password\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/poker/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"poker",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 24 May 2020 03:15:25 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"msg\":\"登陆成功\",\"code\":0,\"userId\":34}"
+				},
+				{
+					"name": "正常",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userName\":\"zxl\",\n\t\"password\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/poker/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"poker",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 30 May 2020 09:20:55 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"msg\":\"登陆成功\",\"code\":0,\"userId\":34}"
+				},
+				{
+					"name": "成功",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userName\":\"zxl\",\n\t\"password\":\"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/poker/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"poker",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 22 May 2020 14:04:16 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"msg\":\"登陆成功！\",\"code\":0}"
+				}
+			]
+		},
+		{
+			"name": "获取训练包列表",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1a3ce34-ebfa-4f47-90dd-3059780781e3",
+						"exec": [
+							"/*",
+							"status;\t//是否已购:1是  0.否",
+							"startTime;//开始时间",
+							"endTime;//截止时间",
+							"month;//单月购买所需钻石",
+							"",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pageSize\":10,\n\t\"pageNo\":1,\n\t\"poolType\":1,\n\t\"type\":2,\n    \"userId\":\"83\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8088/package/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"package",
+						"list"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "正常",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"pageSize\":10,\n\t\"pageNo\":1,\n\t\"poolType\":1,\n\t\"type\":2,\n    \"userId\":\"83\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8088/package/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"package",
+								"list"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 24 May 2020 03:19:12 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"offset\":0,\"limit\":2147483647,\"pageNo\":1,\"pageSize\":10,\"rows\":[{\"id\":1,\"poolType\":1,\"type\":2,\"name\":\"EP VS BB\",\"price\":null,\"dayCount\":30,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":2,\"poolType\":1,\"type\":2,\"name\":\"MP VS BB\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":3,\"poolType\":1,\"type\":2,\"name\":\"CO VS BB\\r\\nCO VS BB\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":4,\"poolType\":1,\"type\":2,\"name\":\"BTN VS BB\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":5,\"poolType\":1,\"type\":2,\"name\":\"EP VS MP\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":6,\"poolType\":1,\"type\":2,\"name\":\"EP VS CO\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":7,\"poolType\":1,\"type\":2,\"name\":\"EP VS BTN\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":8,\"poolType\":1,\"type\":2,\"name\":\"MP VS CO\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":9,\"poolType\":1,\"type\":2,\"name\":\"MP VS BTN\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":10,\"poolType\":1,\"type\":2,\"name\":\"CO VS BTN\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null}],\"total\":15,\"totalPages\":2,\"first\":1}"
+				}
+			]
+		},
+		{
+			"name": "获取训练包列表 V1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "92fd1f1e-841d-4b50-963e-8c829cfa8b36",
+						"exec": [
+							"/*",
+							"status;\t//是否已购:1是  0.否",
+							"startTime;//开始时间",
+							"endTime;//截止时间",
+							"month;//单月购买所需钻石",
+							"",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pageSize\":10,\n\t\"pageNo\":1,\n\t\"poolType\":1,\n\t\"type\":2,\n    \"userId\":\"83\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8088/package/listV1",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"package",
+						"listV1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "正常",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"pageSize\":10,\n\t\"pageNo\":1,\n\t\"poolType\":1,\n\t\"type\":2,\n    \"userId\":\"83\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8088/package/listV1",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"package",
+								"listV1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 24 May 2020 03:19:12 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"offset\":0,\"limit\":2147483647,\"pageNo\":1,\"pageSize\":10,\"rows\":[{\"id\":1,\"poolType\":1,\"type\":2,\"name\":\"EP VS BB\",\"price\":null,\"dayCount\":30,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":2,\"poolType\":1,\"type\":2,\"name\":\"MP VS BB\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":3,\"poolType\":1,\"type\":2,\"name\":\"CO VS BB\\r\\nCO VS BB\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":4,\"poolType\":1,\"type\":2,\"name\":\"BTN VS BB\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":5,\"poolType\":1,\"type\":2,\"name\":\"EP VS MP\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":6,\"poolType\":1,\"type\":2,\"name\":\"EP VS CO\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":7,\"poolType\":1,\"type\":2,\"name\":\"EP VS BTN\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":8,\"poolType\":1,\"type\":2,\"name\":\"MP VS CO\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":9,\"poolType\":1,\"type\":2,\"name\":\"MP VS BTN\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null},{\"id\":10,\"poolType\":1,\"type\":2,\"name\":\"CO VS BTN\",\"price\":null,\"dayCount\":null,\"sort\":null,\"createTime\":null,\"updateTime\":null}],\"total\":15,\"totalPages\":2,\"first\":1}"
+				}
+			]
+		},
+		{
+			"name": "获取用户钻石数量",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\":82}"
+				},
+				"url": {
+					"raw": "{{url}}/package/getGold",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"package",
+						"getGold"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取训练包价格明细(单个)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":\"3\",\n\t\"userId\":82\n}"
+				},
+				"url": {
+					"raw": "{{url}}/package/info",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"package",
+						"info"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "正常请求",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"3\",\n\t\"userId\":82\n}"
+						},
+						"url": {
+							"raw": "{{url}}/package/info",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"package",
+								"info"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 May 2020 12:04:29 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"code\":0,\"rows\":{\"id\":1,\"userId\":null,\"gold\":50000,\"month\":100,\"year\":1000,\"forver\":2000}}"
+				}
+			]
+		},
+		{
+			"name": "获取策略包价格明细(打包)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"type\":3,\n\t\"poolType\":1,\n\t\"userId\":\"22\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/package/info",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"package",
+						"info"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "正常请求",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\":3,\n\t\"poolType\":1,\n\t\"userId\":\"22\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/package/info",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"package",
+								"info"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 May 2020 12:22:39 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"code\":0,\"rows\":{\"id\":7,\"userId\":null,\"type\":\"3-1\",\"poolType\":null,\"gold\":50000,\"month\":2000,\"year\":20000,\"forver\":40000}}"
+				}
+			]
+		},
+		{
+			"name": "策略包购买(单个购买)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"dayCount   天数   1.30天   2.一年365天    3.永久",
+							"",
+							"",
+							"",
+							"",
+							"*/"
+						],
+						"id": "cf3318b4-becf-4b3b-923d-91bee991b110"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":82,\n\t\"packageId\":1,\n\t\"dayCount\":2\n}"
+				},
+				"url": {
+					"raw": "{{url}}/package/buy",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"package",
+						"buy"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "正常",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\":82,\n\t\"packageId\":1,\n\t\"dayCount\":2\n}"
+						},
+						"url": {
+							"raw": "{{url}}/package/buy",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"package",
+								"buy"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 May 2020 13:54:16 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"msg\":\"购买成功\",\"code\":0}"
+				}
+			]
+		},
+		{
+			"name": "策略包购买(打包购买)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"\t\"userId\":3,",
+							"\t\"type\":2,               2.   6 人桌    3.   8 人桌 ",
+							"\t\"poolType\":2,           1.  单次加注底池   2.  3bet底池       3.     4bet底池",
+							"\t\"dayCount\":2",
+							"",
+							"*/"
+						],
+						"id": "8d7be1ac-3c1a-4acf-99a5-ac6d8938be39"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":3,\n\t\"type\":2,\n\t\"poolType\":2,\n\t\"dayCount\":3\n}"
+				},
+				"url": {
+					"raw": "{{url}}/package/buy",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"package",
+						"buy"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "正常",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\":3,\n\t\"type\":2,\n\t\"poolType\":2,\n\t\"dayCount\":3\n}"
+						},
+						"url": {
+							"raw": "{{url}}/package/buy",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"package",
+								"buy"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 May 2020 12:39:13 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"msg\":\"购买成功\",\"code\":0}"
+				}
+			]
+		},
+		{
+			"name": "策略包购买(打包购买) V1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "850ff09b-416f-4ea3-b6f4-7eb136cd7960",
+						"exec": [
+							"/*",
+							"\t\"userId\":3,",
+							"\t\"type\":2,               2.   6 人桌    3.   8 人桌 ",
+							"\t\"poolType\":2,           1.  单次加注底池   2.  3bet底池       3.     4bet底池",
+							"\t\"dayCount\":2",
+							"",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":83,\n\t\"type\":2,\n\t\"poolType\":4,\n\t\"dayCount\":1\n}"
+				},
+				"url": {
+					"raw": "{{url}}/package/buyV1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"package",
+						"buyV1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "正常",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\":83,\n\t\"type\":2,\n\t\"poolType\":4,\n\t\"dayCount\":1\n}"
+						},
+						"url": {
+							"raw": "{{url}}/package/buyV1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"package",
+								"buyV1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 May 2020 12:39:13 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"msg\":\"购买成功\",\"code\":0}"
+				}
+			]
+		},
+		{
+			"name": "购买明细",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce8ced6d-5a0e-4b5b-b7eb-215c9b5cb47a",
+						"exec": [
+							"/*",
+							"{",
+							"      \"id\": 12,",
+							"      \"dayCount\": -1,                           //-1 永久",
+							"      \"createDate\": \"2020-05-28 22:56:39\",  ",
+							"      \"name\": \"2-2\",                            //六人桌-3bet池底",
+							"      \"gold\": 24000,                            // 金币 ",
+							"      \"pakgeType\": null,",
+							"      \"userId\": 0",
+							"    }",
+							"",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pageSize\":5,\n\t\"pageNo\":1,\n\t\"userId\":83\n}"
+				},
+				"url": {
+					"raw": "{{url}}/package/record",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"package",
+						"record"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "正常",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"pageSize\":5,\n\t\"pageNo\":1,\n\t\"userId\":83\n}"
+						},
+						"url": {
+							"raw": "{{url}}/package/record",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"package",
+								"record"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 28 May 2020 15:05:46 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"offset\":0,\"limit\":2147483647,\"pageNo\":2,\"pageSize\":5,\"rows\":[],\"total\":5,\"totalPages\":1,\"first\":6}"
+				},
+				{
+					"name": "正常",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"pageSize\":5,\n\t\"pageNo\":1,\n\t\"userId\":83\n}"
+						},
+						"url": {
+							"raw": "{{url}}/package/record",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"package",
+								"record"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 28 May 2020 14:17:13 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"offset\":0,\"limit\":2147483647,\"pageNo\":1,\"pageSize\":4,\"rows\":[{\"id\":11,\"dayCount\":30,\"createDate\":\"2020-05-28 21:58:06\",\"name\":\"2-2\",\"gold\":1200,\"pakgeType\":null,\"userId\":0},{\"id\":10,\"dayCount\":365,\"createDate\":\"2020-05-27 20:42:05\",\"name\":\"EP VS BB\",\"gold\":1000,\"pakgeType\":null,\"userId\":0},{\"id\":7,\"dayCount\":365,\"createDate\":\"2020-05-27 20:39:13\",\"name\":\"2-2\",\"gold\":12000,\"pakgeType\":null,\"userId\":0},{\"id\":6,\"dayCount\":365,\"createDate\":\"2020-05-26 21:54:17\",\"name\":\"EP VS BB\",\"gold\":1000,\"pakgeType\":null,\"userId\":0}],\"total\":4,\"totalPages\":1,\"first\":1}"
+				}
+			]
+		},
+		{
+			"name": "打包策略包",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"/*",
+							"",
+							"status   是否已购买: 1. 是   0. 否",
+							"type     2-1 2-2 2-3 2-4  (6人桌-单池底  6人桌-3bet底池    6人桌-4bet池底 6人桌-全部策略包)",
+							"*/"
+						],
+						"id": "075c8a82-bb82-4132-b785-f2b2ebb62856"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":\"3\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/package/packagType",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"package",
+						"packagType"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "正常请求",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\":\"3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/package/packagType",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"package",
+								"packagType"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 31 May 2020 07:24:52 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"code\":0,\"rows\":{\"list\":[{\"id\":2,\"month\":3300,\"year\":33000,\"forver\":66000,\"type\":\"2-4\",\"status\":0},{\"id\":3,\"month\":1200,\"year\":12000,\"forver\":24000,\"type\":\"2-1\",\"status\":0},{\"id\":4,\"month\":1200,\"year\":12000,\"forver\":24000,\"type\":\"2-2\",\"status\":1},{\"id\":5,\"month\":1200,\"year\":12000,\"forver\":24000,\"type\":\"2-3\",\"status\":0},{\"id\":7,\"month\":10000,\"year\":100000,\"forver\":200000,\"type\":\"3-4\",\"status\":0},{\"id\":8,\"month\":2000,\"year\":20000,\"forver\":40000,\"type\":\"3-1\",\"status\":0},{\"id\":9,\"month\":4500,\"year\":45000,\"forver\":90000,\"type\":\"3-2\",\"status\":0},{\"id\":10,\"month\":4500,\"year\":45000,\"forver\":90000,\"type\":\"3-3\",\"status\":0}],\"totalGold\":102}}"
+				}
+			]
+		},
+		{
+			"name": "打包策略包V1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f355a173-92d9-41c9-8e3a-b2638fb29aa0",
+						"exec": [
+							"/*",
+							"",
+							"status   是否已购买: 1. 是   0. 否",
+							"type     2-1 2-2 2-3 2-4  (6人桌-单池底  6人桌-3bet底池    6人桌-4bet池底 6人桌-全部策略包)",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\":\"83\",\n    \"type\":2\n}"
+				},
+				"url": {
+					"raw": "localhost:8088/package/packagTypeV1",
+					"host": [
+						"localhost"
+					],
+					"port": "8088",
+					"path": [
+						"package",
+						"packagTypeV1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "正常请求",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userId\":\"83\",\n    \"type\":2\n}"
+						},
+						"url": {
+							"raw": "localhost:8088/package/packagTypeV1",
+							"host": [
+								"localhost"
+							],
+							"port": "8088",
+							"path": [
+								"package",
+								"packagTypeV1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Connection",
+							"value": "keep-alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 31 May 2020 07:24:52 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked",
+							"name": "Transfer-Encoding",
+							"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+						},
+						{
+							"key": "Vary",
+							"value": "Origin",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers",
+							"name": "Vary",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						}
+					],
+					"cookie": [],
+					"body": "{\"code\":0,\"rows\":{\"list\":[{\"id\":2,\"month\":3300,\"year\":33000,\"forver\":66000,\"type\":\"2-4\",\"status\":0},{\"id\":3,\"month\":1200,\"year\":12000,\"forver\":24000,\"type\":\"2-1\",\"status\":0},{\"id\":4,\"month\":1200,\"year\":12000,\"forver\":24000,\"type\":\"2-2\",\"status\":1},{\"id\":5,\"month\":1200,\"year\":12000,\"forver\":24000,\"type\":\"2-3\",\"status\":0},{\"id\":7,\"month\":10000,\"year\":100000,\"forver\":200000,\"type\":\"3-4\",\"status\":0},{\"id\":8,\"month\":2000,\"year\":20000,\"forver\":40000,\"type\":\"3-1\",\"status\":0},{\"id\":9,\"month\":4500,\"year\":45000,\"forver\":90000,\"type\":\"3-2\",\"status\":0},{\"id\":10,\"month\":4500,\"year\":45000,\"forver\":90000,\"type\":\"3-3\",\"status\":0}],\"totalGold\":102}}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
