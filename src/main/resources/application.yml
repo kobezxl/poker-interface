@@ -11,7 +11,7 @@ server:
 spring:
     # 环境 dev:开发环境|test:测试环境|prod:生成环境
     profiles:
-        active: prod
+        active: dev
     # jackson时间格式化
     jackson:
         time-zone: GMT+8
@@ -43,10 +43,10 @@ spring:
             max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
             max-idle: 10      # 连接池中的最大空闲连接
             min-idle: 5       # 连接池中的最小空闲连接
-    messages:
-        basename: i18n/messages
-        cache-seconds: -1
-        encoding: UTF-8
+#    messages:
+#        basename: i18n/messages
+#       # cache-seconds: -1
+#        encoding: UTF-8
 
 # Mybatis配置
 mybatis:
